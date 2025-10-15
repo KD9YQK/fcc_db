@@ -1,4 +1,4 @@
-from main import get_callsign
+from fcc_db import get_callsign
 print("\nHam and GMRS Callsign Lookup\nWritten by KD9YQK\n")
 
 loop = True
