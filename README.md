@@ -1,6 +1,7 @@
 # fcc_db
 ## FCC Ham and GMRS database creation for local use
-At least 500Mb of FREE memory must be available.
+At least 500Mb of FREE memory must be available to build the database.  Raspberry Pi's with less than 1024MB of RAM currently won't work.  A future fix will be to add an option to define a slqite3 temp directory not in RAM.
+It would add wear to the SD Card, but would allow a smaller Pi Zero 2w to run since it would reduce the RAM usage to around 300MB.
 
 ### fcc_db.py
 The main library.  There are 2 usable functions.
