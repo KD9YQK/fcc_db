@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from fcc_db import build_db
 
 try:
