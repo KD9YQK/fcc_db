@@ -2,7 +2,7 @@
 
 echo "Backing up database"
 mv callsign.sqlite3 callsign.sqlite3.old
-python build.py
+python build_database.py
 exit_status=$?
 echo $exit_status
 if [ $exit_status -eq 0 ]; then
