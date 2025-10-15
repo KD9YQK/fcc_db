@@ -190,7 +190,6 @@ def build_db():
     con.execute("pragma page_size = 1024;").fetchall()
     con.commit()
     con.close()
-    sleep(5)
     
     print("  Vacuum")
     con = sqlite3.connect(DB_filepath)
