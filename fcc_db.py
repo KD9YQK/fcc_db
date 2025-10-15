@@ -179,6 +179,7 @@ def build_db():
     print("Optimizing DB")
     print("  Connecting")
     con = sqlite3.connect(DB_filepath)
+    con.execute(f"PRAGMA temp_store = MEMORY")
 
     print("  Building indices")
     con.execute("CREATE INDEX callsign ON licenses (callsign);").fetchall()
