@@ -165,6 +165,7 @@ def build_db():
 
     print("Exporting data from SQLite in memory to", DB_filepath)
     con.execute("ATTACH DATABASE '" + DB_filepath + "' AS clean;").fetchall()
+    con.execute(f"PRAGMA temp_store = MEMORY")
     print("  Inserting table into", DB_filepath)
     con.execute(
         "CREATE TABLE clean.licenses AS SELECT hd.usid,callsign,status,service,name,street,city,state,zip,frn,class,prevcall FROM hd INNER JOIN en ON hd.usid = en.usid LEFT JOIN am ON hd.usid = am.usid;").fetchall()
@@ -185,10 +186,14 @@ def build_db():
     con.execute("CREATE INDEX street_search ON licenses (street,city,state);").fetchall()
     con.execute("pragma journal_mode = delete;").fetchall()
     con.execute("pragma page_size = 1024;").fetchall()
-
+    con.commit()
+    con.close()
+    sleep(5)
+    
     print("  Vacuum")
+    con = sqlite3.connect(DB_filepath)
+    con.execute(f"PRAGMA temp_store = MEMORY")    
     con.execute("vacuum;").fetchall()
-
     print("  Cleaning up")
     con.commit()
     con.close()
