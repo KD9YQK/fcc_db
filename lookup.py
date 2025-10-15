@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from fcc_db import get_callsign
 print("\nHam and GMRS Callsign Lookup\nWritten by KD9YQK\n")
 
