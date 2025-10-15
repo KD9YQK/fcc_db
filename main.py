@@ -205,7 +205,10 @@ def get_callsign(call: str):
     con = sqlite3.connect(DB_filepath)
     cur = con.cursor()
     a = cur.execute('SELECT frn FROM licenses WHERE callsign = ?', (call,))
-    frn = a.fetchone()[0]
+    try:
+        frn = a.fetchone()[0]
+    except TypeError:
+        return retval
     a = cur.execute('SELECT * FROM licenses WHERE frn = ?', (frn,))
     f = a.fetchall()
     for r in f:
